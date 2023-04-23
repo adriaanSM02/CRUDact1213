@@ -26,7 +26,7 @@ class ParentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('parents.create');
     }
 
     /**
@@ -34,7 +34,13 @@ class ParentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Parents::create([
+            'user_id' => Auth::id(),
+            'name'=> $request->name,
+            'gender' => $request->gender
+        ]);
+        
+        return redirect()->route('parents.index');
     }
 
     /**
@@ -42,7 +48,13 @@ class ParentsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $parent = Parents::where('user_id', Auth::id())
+            ->where('active', 1)
+            ->where('id', $id)
+            ->select('id', 'name', 'gender')
+            ->firstOrFail();
+
+        return view('parents.show', compact('parent'));
     }
 
     /**
@@ -50,7 +62,12 @@ class ParentsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $parent = Parents::where('user_id', Auth::id())
+            ->where('active', 1)
+            ->where('id', $id)
+            ->select('id', 'name', 'gender')
+            ->firstOrFail();
+        return view('parents.edit', compact('parent'));
     }
 
     /**
@@ -58,7 +75,18 @@ class ParentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $parent = Parents::where('user_id', Auth::id())
+            ->where('active', 1)
+            ->where('id', $id)
+            ->select('id', 'name', 'gender')
+            ->firstOrFail();
+
+        $parent->update([
+            'name' => $request->name,
+            'gender' => $request->gender
+        ]);
+
+        return redirect()->route('parents.show', $id);
     }
 
     /**
@@ -66,6 +94,16 @@ class ParentsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $parent = Parents::where('user_id', Auth::id())
+            ->where('active', 1)
+            ->where('id', $id)
+            ->select('id', 'name', 'gender')
+            ->firstOrFail();
+        
+        $parent->update([
+            'active' => false
+        ]);
+
+        return redirect()->route('parents.index');
     }
 }
