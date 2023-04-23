@@ -10,4 +10,5 @@ class SuperPowers extends Model
     use HasFactory;
 
     protected $table = "superpowers";
+    protected $guarded = [];
 }
