@@ -7,7 +7,7 @@
     <title>Index Parents</title>
 </head>
 <body>
-    <h1>SUPERPOWERS</h1>
+    <h1>PARENTS</h1>
 
     <table>
         <thead>
