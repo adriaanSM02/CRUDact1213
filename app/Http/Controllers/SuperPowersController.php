@@ -15,12 +15,15 @@ class SuperPowersController extends Controller
             ->select('id', 'name', 'description')
             ->get();
         // dd($superpowers);
-        return view('superpowers.index', compact('superpowers'));
+
+        $page_title = 'Superpowers';
+        return view('superpowers.index', compact('superpowers','page_title'));
     }
 
     public function create()
     {
-        return view('superpowers.create');
+        $page_title = 'Create Superpowers';
+        return view('superpowers.create', compact('page_title'));
     }
 
     public function store(Request $request)
@@ -42,7 +45,9 @@ class SuperPowersController extends Controller
             ->select('id', 'name', 'description')
             ->firstOrFail();
 
-        return view('superpowers.show', compact('superpower'));
+        $page_title = "Edit Superpower";
+
+        return view('superpowers.show', compact('superpower', 'page_title'));
     }
 
     public function edit(string $id)
@@ -52,7 +57,9 @@ class SuperPowersController extends Controller
             ->where('id', $id)
             ->select('id', 'name', 'description')
             ->firstOrFail();
-        return view('superpowers.edit', compact('superpower'));
+
+        $page_title = "Edit Superpower";
+        return view('superpowers.edit', compact('superpower', 'page_title'));
     }
 
     public function update(Request $request, string $id)

@@ -1,29 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Superpowers</title>
-</head>
-<body>
-    <h1>Create Superpowers</h1>
+@extends('layouts.master')
 
-    <form action="{{ route('superpowers.store')}} " method="post">
-        @csrf
+@section('buttons')
+<div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-9 col-lg-6">
+        <a href="{{ route('superpowers.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+@endsection
 
-        <label for="name">Name</label><br>
-        <input type="text" name="name">
+@section('content')
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-6">
+                <form action="{{ route('superpowers.store')}} " method="post">
+                @csrf
+                    <div class="mb-3">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    
+                    <br><br>
 
-        <br><br>
-        
-        <label for="description">Description</label><br>
-        <textarea name="description" cols="50" rows="5"></textarea>
+                    <div class="mb-3">
+                        <label for="description">Description</label><br>
+                        <textarea name="description" cols="50" rows="5" class="form-control"></textarea>
+                    </div>
 
-        <br><br>
-
-        <button type="submit">Create Superpower</button>
-    </form>
-    
-</body>
-</html>
+                    <br><br>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">{{ $page_title }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+@endsection
