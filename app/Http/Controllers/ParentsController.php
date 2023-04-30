@@ -18,7 +18,8 @@ class ParentsController extends Controller
             ->select('id', 'name', 'gender')
             ->get();
         // dd($parents);
-        return view('parents.index', compact('parents'));
+        $page_title = "Parents";
+        return view('parents.index', compact('parents', 'page_title'));
     }
 
     /**
@@ -26,7 +27,8 @@ class ParentsController extends Controller
      */
     public function create()
     {
-        return view('parents.create');
+        $page_title = "Create Parents";
+        return view('parents.create', compact('page_title'));
     }
 
     /**
@@ -54,7 +56,9 @@ class ParentsController extends Controller
             ->select('id', 'name', 'gender')
             ->firstOrFail();
 
-        return view('parents.show', compact('parent'));
+        $page_title = $parent->name;
+
+        return view('parents.show', compact('parent', 'page_title'));
     }
 
     /**
@@ -67,7 +71,9 @@ class ParentsController extends Controller
             ->where('id', $id)
             ->select('id', 'name', 'gender')
             ->firstOrFail();
-        return view('parents.edit', compact('parent'));
+
+        $page_title = "Edit Parent";
+        return view('parents.edit', compact('parent', 'page_title'));
     }
 
     /**

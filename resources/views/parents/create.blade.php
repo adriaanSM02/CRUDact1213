@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Parents</title>
-</head>
-<body>
-    <h1>Create Parents</h1>
+@extends('layouts.master')
 
-    <form action="{{ route('parents.store')}} " method="post">
-        @csrf
+@section('buttons')
+<div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-9 col-lg-6">
+        <a href="{{ route('parents.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+@endsection
 
-        <label for="name">Name</label><br>
-        <input type="text" name="name">
+@section('content')
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-6">
+                <form action="{{ route('parents.store')}} " method="post">
+                @csrf
+                    <div class="mb-3">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    
+                    <br><br>
 
-        <br><br>
-        
-        <label for="gender">Gender</label><br>
-        <input type="text" name="gender"></input>
+                    <div class="mb-3">
+                        <label for="gender">Gender</label><br>
+                        <select name="gender" id="gender" class="form-select">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
 
-        <br><br>
-
-        <button type="submit">Create Gender</button>
-    </form>
-    
-</body>
-</html>
+                    <br><br>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">{{ $page_title }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+@endsection

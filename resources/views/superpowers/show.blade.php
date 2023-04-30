@@ -12,7 +12,7 @@
 
         <div class="row justify-content-center mb-4">
             <div class="col-12 col-md-9 col-lg-6">
-                <p>{{ $superpower->description }}</p>
+                <p class="text-center">{{ $superpower->description }}</p>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
             <div class="col-12 col-md-9 col-lg-6 text-end">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a href="{{ route('superpowers.edit', $superpower->id) }}" class="btn btn-warning text-white">{{ $page_title }}</a>
+                        <a href="{{ route('superpowers.edit', $superpower->id) }}" class="btn btn-warning text-white">Edit Superpower</a>
                     </li>
                     <li class="list-inline-item">
                         <form action="{{ route('superpowers.destroy', $superpower->id) }}" method="post">

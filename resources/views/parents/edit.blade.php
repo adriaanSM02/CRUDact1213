@@ -1,30 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Parents</title>
-</head>
-<body>
-    <h1>Edit Parents</h1>
+@extends('layouts.master')
 
-    <form action="{{ route('parents.update', $parent->id) }} " method="post">
-        @method('put')
-        @csrf
+@section('buttons')
+<div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-9 col-lg-6">
+        <a href="{{ route('parents.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+@endsection
 
-        <label for="name">Name</label><br>
-        <input type="text" name="name" value="{{ $parent->name }}">
+@section('content')
 
-        <br><br>
-        
-        <label for="gender">Gender</label><br>
-        <input type="gender" name="gender" value="{{ $parent->gender }}">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-6">
+                <form action="{{ route('parents.update', $parent->id) }} " method="post">
+                @method('put')
+                @csrf
 
-        <br><br>
+                    <div class="mb-3">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" value="{{ $parent->name }}" class="form-control">
+                    </div>
 
-        <button type="submit">Edit Parent</button>
-    </form>
-    
-</body>
-</html>
+                    <br><br>
+
+                    <div class="mb-3">
+                        <label for="gender">Gender</label><br>
+                        <select name="gender" id="gender" value="{{ $parent->gender }}" class="form-select">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    
+                    <br><br>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">{{ $page_title }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+@endsection

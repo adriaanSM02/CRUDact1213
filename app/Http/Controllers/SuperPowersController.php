@@ -45,7 +45,7 @@ class SuperPowersController extends Controller
             ->select('id', 'name', 'description')
             ->firstOrFail();
 
-        $page_title = "Edit Superpower";
+        $page_title = $superpower->name;
 
         return view('superpowers.show', compact('superpower', 'page_title'));
     }
